@@ -2,50 +2,43 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Parallel Computing Practical",
+    "title": "Statistical Computing",
     "section": "",
-    "text": "1 Welcome to the Parallel Computing Practical"
-  },
-  {
-    "objectID": "assignment 2.html",
-    "href": "assignment 2.html",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "",
-    "text": "Code\n# Load required packages\nlibrary(iterators)\nlibrary(foreach)\nlibrary(parallel)\nlibrary(doParallel)\nlibrary(MASS)\nlibrary(boot)"
+    "text": "1 Welcome to the Parallel Computing Practical\n\n\n2 GITHUB : https://github.com/darmhiknaicker"
   },
   {
     "objectID": "assignment 2.html#question-1-parallel-sampling-and-computation",
     "href": "assignment 2.html#question-1-parallel-sampling-and-computation",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "1 Question 1: Parallel Sampling and Computation",
-    "text": "1 Question 1: Parallel Sampling and Computation\n\n\nCode\n# Register parallel backend\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\n# Set seed for reproducibility\nset.seed(123)\n\n# Use foreach to generate samples, calculate mean and variance, and row-bind results\nresults &lt;- foreach(i = 1:100, .combine = rbind) %dopar% {\n  sample_data &lt;- rexp(100, rate = 1)\n  sample_mean &lt;- mean(sample_data)\n  sample_var &lt;- var(sample_data)\n  c(sample_mean, sample_var)\n}\n\n# Convert to a data frame and add column names\nresults &lt;- as.data.frame(results)\ncolnames(results) &lt;- c(\"Mean\", \"Variance\")\n\n# Stop parallel cluster\nstopCluster(cl)\n\n# Display the first few rows of the results\nhead(results)\n\n\n              Mean  Variance\nresult.1 0.8311095 0.5983242\nresult.2 1.0011169 0.8739160\nresult.3 0.8638296 1.1106385\nresult.4 0.9997451 0.8131631\nresult.5 0.7984325 0.4161565\nresult.6 1.1212757 1.1549023"
+    "title": "2  Parallel and Sequential Processing in R",
+    "section": "2.1 Question 1: Parallel Sampling and Computation",
+    "text": "2.1 Question 1: Parallel Sampling and Computation\n\n\nCode\n# Register parallel backend\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\n# Set seed for reproducibility\nset.seed(123)\n\n# Use foreach to generate samples, calculate mean and variance, and row-bind results\nresults &lt;- foreach(i = 1:100, .combine = rbind) %dopar% {\n  sample_data &lt;- rexp(100, rate = 1)\n  sample_mean &lt;- mean(sample_data)\n  sample_var &lt;- var(sample_data)\n  c(sample_mean, sample_var)\n}\n\n# Convert to a data frame and add column names\nresults &lt;- as.data.frame(results)\ncolnames(results) &lt;- c(\"Mean\", \"Variance\")\n\n# Stop parallel cluster\nstopCluster(cl)\n\n# Display the first few rows of the results\nhead(results)\n\n\n              Mean  Variance\nresult.1 0.8630848 0.7895733\nresult.2 0.8810088 0.9384578\nresult.3 1.0790460 0.9426926\nresult.4 1.1062054 1.0085182\nresult.5 1.0630430 1.3589275\nresult.6 0.9286563 0.9830878"
   },
   {
     "objectID": "assignment 2.html#question-2-comparing-serial-and-parallel-bootstrapping",
     "href": "assignment 2.html#question-2-comparing-serial-and-parallel-bootstrapping",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "2 Question 2: Comparing Serial and Parallel Bootstrapping",
-    "text": "2 Question 2: Comparing Serial and Parallel Bootstrapping\n\n\nCode\nset.seed(123)\nB &lt;- 10000\n\n# Serial execution\nserial_time &lt;- system.time({\n  serial_results &lt;- replicate(B, {\n    sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n    median(sample_data)\n  })\n})\n\n# Set up parallel backend\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\n# Parallel bootstrap\nparallel_time &lt;- system.time({\n  parallel_results &lt;- foreach(i = 1:B, .combine = c, .packages = 'MASS') %dopar% {\n    sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n    median(sample_data)\n  }\n})\n\nstopCluster(cl)\n\n# Batch processing setup\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\nset.seed(123)\nB_batch &lt;- 1000\nnum_batches &lt;- B / B_batch\n\nbatch_time &lt;- system.time({\n  batch_results &lt;- foreach(i = 1:num_batches, .combine = c, .packages = 'MASS') %dopar% {\n    replicate(B_batch, {\n      sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n      median(sample_data)\n    })\n  }\n})\n\nstopCluster(cl)\n\ncat(\"Serial processing time:\", serial_time, \"\\n\")\n\n\nSerial processing time: 0.442 0.011 0.511 0 0 \n\n\nCode\ncat(\"Parallel processing time:\", parallel_time, \"\\n\")\n\n\nParallel processing time: 2.209 0.413 2.822 0 0 \n\n\nCode\ncat(\"Batch processing time:\", batch_time, \"\\n\")\n\n\nBatch processing time: 0.009 0.001 0.186 0 0"
+    "title": "2  Parallel and Sequential Processing in R",
+    "section": "2.2 Question 2: Comparing Serial and Parallel Bootstrapping",
+    "text": "2.2 Question 2: Comparing Serial and Parallel Bootstrapping\n\n\nCode\nset.seed(123)\nB &lt;- 10000\n\n# Serial execution\nserial_time &lt;- system.time({\n  serial_results &lt;- replicate(B, {\n    sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n    median(sample_data)\n  })\n})\n\n# Set up parallel backend\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\n# Parallel bootstrap\nparallel_time &lt;- system.time({\n  parallel_results &lt;- foreach(i = 1:B, .combine = c, .packages = 'MASS') %dopar% {\n    sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n    median(sample_data)\n  }\n})\n\nstopCluster(cl)\n\n# Batch processing setup\ncl &lt;- makeCluster(detectCores() - 1)\nregisterDoParallel(cl)\n\nset.seed(123)\nB_batch &lt;- 1000\nnum_batches &lt;- B / B_batch\n\nbatch_time &lt;- system.time({\n  batch_results &lt;- foreach(i = 1:num_batches, .combine = c, .packages = 'MASS') %dopar% {\n    replicate(B_batch, {\n      sample_data &lt;- sample(galaxies, length(galaxies), replace = TRUE)\n      median(sample_data)\n    })\n  }\n})\n\nstopCluster(cl)\n\ncat(\"Serial processing time:\", serial_time, \"\\n\")\n\n\nSerial processing time: 0.434 0.009 0.445 0 0 \n\n\nCode\ncat(\"Parallel processing time:\", parallel_time, \"\\n\")\n\n\nParallel processing time: 1.963 0.345 2.358 0 0 \n\n\nCode\ncat(\"Batch processing time:\", batch_time, \"\\n\")\n\n\nBatch processing time: 0.008 0.001 0.183 0 0"
   },
   {
     "objectID": "assignment 2.html#question-3-monte-carlo-bootstrapping",
     "href": "assignment 2.html#question-3-monte-carlo-bootstrapping",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "3 Question 3: Monte Carlo Bootstrapping",
-    "text": "3 Question 3: Monte Carlo Bootstrapping\n\n\nCode\nmedian_boot &lt;- function(data, indices) {\n  return(median(data[indices]))\n}\n\nset.seed(123)\nB &lt;- 1000\nMC_reps &lt;- 1000\nn &lt;- 50\ntrue_median &lt;- log(2)\ncoverage_count &lt;- 0\n\nsys_time1 &lt;- system.time({\n  for (i in 1:MC_reps) {\n    sample_data &lt;- rexp(n, rate = 1)\n    boot_result &lt;- boot(sample_data, statistic = median_boot, R = B)\n    ci &lt;- boot.ci(boot_result, type = \"perc\")$percent[4:5]\n    if (!is.null(ci) && true_median &gt;= ci[1] && true_median &lt;= ci[2]) {\n      coverage_count &lt;- coverage_count + 1\n    }\n  }\n})\n\ncoverage_prob &lt;- coverage_count / MC_reps\n\ncat(\"Estimated Coverage Probability:\", coverage_prob, \"\\n\")\n\n\nEstimated Coverage Probability: 0.951 \n\n\nCode\ncat(\"Execution Time:\", sys_time1, \"\\n\")\n\n\nExecution Time: 37.506 0.32 37.998 0 0"
+    "title": "2  Parallel and Sequential Processing in R",
+    "section": "2.3 Question 3: Monte Carlo Bootstrapping",
+    "text": "2.3 Question 3: Monte Carlo Bootstrapping\n\n\nCode\nmedian_boot &lt;- function(data, indices) {\n  return(median(data[indices]))\n}\n\nset.seed(123)\nB &lt;- 1000\nMC_reps &lt;- 1000\nn &lt;- 50\ntrue_median &lt;- log(2)\ncoverage_count &lt;- 0\n\nsys_time1 &lt;- system.time({\n  for (i in 1:MC_reps) {\n    sample_data &lt;- rexp(n, rate = 1)\n    boot_result &lt;- boot(sample_data, statistic = median_boot, R = B)\n    ci &lt;- boot.ci(boot_result, type = \"perc\")$percent[4:5]\n    if (!is.null(ci) && true_median &gt;= ci[1] && true_median &lt;= ci[2]) {\n      coverage_count &lt;- coverage_count + 1\n    }\n  }\n})\n\ncoverage_prob &lt;- coverage_count / MC_reps\n\ncat(\"Estimated Coverage Probability:\", coverage_prob, \"\\n\")\n\n\nEstimated Coverage Probability: 0.951 \n\n\nCode\ncat(\"Execution Time:\", sys_time1, \"\\n\")\n\n\nExecution Time: 36.709 0.294 37.056 0 0"
   },
   {
     "objectID": "assignment 2.html#question-4-finding-maximum-in-iterated-normal-samples",
     "href": "assignment 2.html#question-4-finding-maximum-in-iterated-normal-samples",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "4 Question 4: Finding Maximum in Iterated Normal Samples",
-    "text": "4 Question 4: Finding Maximum in Iterated Normal Samples\n\n\nCode\n# Create an iterator for 3 vectors, each containing 5 normal random numbers\nrand_iter &lt;- irnorm(n = 5, mean = 0, sd = 1)\n\nmax_values &lt;- foreach(i = 1:3, .combine = c) %do% {\n  max(nextElem(rand_iter))\n}\n\nprint(max_values)\n\n\n[1] 1.139151 1.330904 1.317531"
+    "title": "2  Parallel and Sequential Processing in R",
+    "section": "2.4 Question 4: Finding Maximum in Iterated Normal Samples",
+    "text": "2.4 Question 4: Finding Maximum in Iterated Normal Samples\n\n\nCode\n# Create an iterator for 3 vectors, each containing 5 normal random numbers\nrand_iter &lt;- irnorm(n = 5, mean = 0, sd = 1)\n\nmax_values &lt;- foreach(i = 1:3, .combine = c) %do% {\n  max(nextElem(rand_iter))\n}\n\nprint(max_values)\n\n\n[1] 1.139151 1.330904 1.317531"
   },
   {
     "objectID": "assignment 2.html#question-5-comparing-execution-time-of-different-parallel-methods",
     "href": "assignment 2.html#question-5-comparing-execution-time-of-different-parallel-methods",
-    "title": "Parallel and Sequential Processing in R",
-    "section": "5 Question 5: Comparing Execution Time of Different Parallel Methods",
-    "text": "5 Question 5: Comparing Execution Time of Different Parallel Methods\n\n\nCode\nset.seed(1234)\nnumCores &lt;- detectCores() - 1  \ncl &lt;- makeCluster(numCores)\nregisterDoParallel(cl)\n\nfind_max &lt;- function() {\n  max(rnorm(5, mean = 0, sd = 1))\n}\n\n# Using foreach (sequential)\nseq_time &lt;- system.time({\n  rand_iter &lt;- irnorm(n = 5, mean = 0, sd = 1)\n  max_values_foreach_seq &lt;- foreach(i = 1:3, .combine = c) %do% {\n    max(nextElem(rand_iter))\n  }\n})\n\n# Using foreach (parallel)\npar_time &lt;- system.time({\n  max_values_foreach_par &lt;- foreach(i = 1:3, .combine = c, .packages = \"iterators\") %dopar% {\n    max(rnorm(5, mean = 0, sd = 1))\n  }\n})\n\n# Using parLapply (parallel)\nparLapply_time &lt;- system.time({\n  max_values_parLapply &lt;- parLapply(cl, 1:3, function(x) max(rnorm(5, mean = 0, sd = 1)))\n})\n\n# Using replicate (sequential)\nreplicate_time &lt;- system.time({\n  max_values_replicate &lt;- replicate(3, max(rnorm(5, mean = 0, sd = 1)))\n})\n\nstopCluster(cl)\n\ncat(\"Sequential foreach time:\", seq_time, \"\\n\")\n\n\nSequential foreach time: 0.003 0 0.003 0 0 \n\n\nCode\ncat(\"Parallel foreach time:\", par_time, \"\\n\")\n\n\nParallel foreach time: 0.004 0.001 0.034 0 0 \n\n\nCode\ncat(\"Parallel parLapply time:\", parLapply_time, \"\\n\")\n\n\nParallel parLapply time: 0.003 0 0.003 0 0 \n\n\nCode\ncat(\"Replicate function time:\", replicate_time, \"\\n\")\n\n\nReplicate function time: 0.002 0 0.002 0 0"
+    "title": "2  Parallel and Sequential Processing in R",
+    "section": "2.5 Question 5: Comparing Execution Time of Different Parallel Methods",
+    "text": "2.5 Question 5: Comparing Execution Time of Different Parallel Methods\n\n\nCode\nset.seed(1234)\nnumCores &lt;- detectCores() - 1  \ncl &lt;- makeCluster(numCores)\nregisterDoParallel(cl)\n\nfind_max &lt;- function() {\n  max(rnorm(5, mean = 0, sd = 1))\n}\n\n# Using foreach (sequential)\nseq_time &lt;- system.time({\n  rand_iter &lt;- irnorm(n = 5, mean = 0, sd = 1)\n  max_values_foreach_seq &lt;- foreach(i = 1:3, .combine = c) %do% {\n    max(nextElem(rand_iter))\n  }\n})\n\n# Using foreach (parallel)\npar_time &lt;- system.time({\n  max_values_foreach_par &lt;- foreach(i = 1:3, .combine = c, .packages = \"iterators\") %dopar% {\n    max(rnorm(5, mean = 0, sd = 1))\n  }\n})\n\n# Using parLapply (parallel)\nparLapply_time &lt;- system.time({\n  max_values_parLapply &lt;- parLapply(cl, 1:3, function(x) max(rnorm(5, mean = 0, sd = 1)))\n})\n\n# Using replicate (sequential)\nreplicate_time &lt;- system.time({\n  max_values_replicate &lt;- replicate(3, max(rnorm(5, mean = 0, sd = 1)))\n})\n\nstopCluster(cl)\n\ncat(\"Sequential foreach time:\", seq_time, \"\\n\")\n\n\nSequential foreach time: 0.003 0 0.003 0 0 \n\n\nCode\ncat(\"Parallel foreach time:\", par_time, \"\\n\")\n\n\nParallel foreach time: 0.004 0.001 0.031 0 0 \n\n\nCode\ncat(\"Parallel parLapply time:\", parLapply_time, \"\\n\")\n\n\nParallel parLapply time: 0.002 0 0.003 0 0 \n\n\nCode\ncat(\"Replicate function time:\", replicate_time, \"\\n\")\n\n\nReplicate function time: 0.001 0 0.002 0 0"
   }
 ]

@@ -1,5 +1,5 @@
 project:
-  type: website
+  type: book
   output-dir: _site  
   render:
     - index.qmd
@@ -33,3 +33,4 @@ format:
     code-fold: true  # Allows users to toggle code blocks
     code-overflow: wrap  # Prevents horizontal scrolling
     css: styles.css  # Custom styles if needed
+

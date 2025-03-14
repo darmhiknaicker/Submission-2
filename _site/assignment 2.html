@@ -9,7 +9,7 @@
 <meta name="author" content="Darmhik Naicker">
 <meta name="dcterms.date" content="2025-03-14">
 
-<title>Parallel and Sequential Processing in R</title>
+<title>Statistical Computing - 2&nbsp; Parallel and Sequential Processing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,11 +60,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -75,11 +77,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 20,
   "language": {
     "search-no-results-text": "No results",
@@ -98,22 +100,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="floating">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Statistical Computing</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/darmhiknaicker" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./assignment 2.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel and Sequential Processing in R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Parallel Computing Practical</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./assignment 2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel and Sequential Processing in R</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#question-1-parallel-sampling-and-computation" id="toc-question-1-parallel-sampling-and-computation" class="nav-link active" data-scroll-target="#question-1-parallel-sampling-and-computation"><span class="header-section-number">1</span> Question 1: Parallel Sampling and Computation</a></li>
-  <li><a href="#question-2-comparing-serial-and-parallel-bootstrapping" id="toc-question-2-comparing-serial-and-parallel-bootstrapping" class="nav-link" data-scroll-target="#question-2-comparing-serial-and-parallel-bootstrapping"><span class="header-section-number">2</span> Question 2: Comparing Serial and Parallel Bootstrapping</a></li>
-  <li><a href="#question-3-monte-carlo-bootstrapping" id="toc-question-3-monte-carlo-bootstrapping" class="nav-link" data-scroll-target="#question-3-monte-carlo-bootstrapping"><span class="header-section-number">3</span> Question 3: Monte Carlo Bootstrapping</a></li>
-  <li><a href="#question-4-finding-maximum-in-iterated-normal-samples" id="toc-question-4-finding-maximum-in-iterated-normal-samples" class="nav-link" data-scroll-target="#question-4-finding-maximum-in-iterated-normal-samples"><span class="header-section-number">4</span> Question 4: Finding Maximum in Iterated Normal Samples</a></li>
-  <li><a href="#question-5-comparing-execution-time-of-different-parallel-methods" id="toc-question-5-comparing-execution-time-of-different-parallel-methods" class="nav-link" data-scroll-target="#question-5-comparing-execution-time-of-different-parallel-methods"><span class="header-section-number">5</span> Question 5: Comparing Execution Time of Different Parallel Methods</a></li>
+  <li><a href="#question-1-parallel-sampling-and-computation" id="toc-question-1-parallel-sampling-and-computation" class="nav-link active" data-scroll-target="#question-1-parallel-sampling-and-computation"><span class="header-section-number">2.1</span> Question 1: Parallel Sampling and Computation</a></li>
+  <li><a href="#question-2-comparing-serial-and-parallel-bootstrapping" id="toc-question-2-comparing-serial-and-parallel-bootstrapping" class="nav-link" data-scroll-target="#question-2-comparing-serial-and-parallel-bootstrapping"><span class="header-section-number">2.2</span> Question 2: Comparing Serial and Parallel Bootstrapping</a></li>
+  <li><a href="#question-3-monte-carlo-bootstrapping" id="toc-question-3-monte-carlo-bootstrapping" class="nav-link" data-scroll-target="#question-3-monte-carlo-bootstrapping"><span class="header-section-number">2.3</span> Question 3: Monte Carlo Bootstrapping</a></li>
+  <li><a href="#question-4-finding-maximum-in-iterated-normal-samples" id="toc-question-4-finding-maximum-in-iterated-normal-samples" class="nav-link" data-scroll-target="#question-4-finding-maximum-in-iterated-normal-samples"><span class="header-section-number">2.4</span> Question 4: Finding Maximum in Iterated Normal Samples</a></li>
+  <li><a href="#question-5-comparing-execution-time-of-different-parallel-methods" id="toc-question-5-comparing-execution-time-of-different-parallel-methods" class="nav-link" data-scroll-target="#question-5-comparing-execution-time-of-different-parallel-methods"><span class="header-section-number">2.5</span> Question 5: Comparing Execution Time of Different Parallel Methods</a></li>
   </ul>
 </nav>
 </nav>
@@ -126,7 +188,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Parallel and Sequential Processing in R</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Parallel and Sequential Processing in R</span></h1>
 </div>
 
 
@@ -165,8 +227,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(boot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<section id="question-1-parallel-sampling-and-computation" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="question-1-parallel-sampling-and-computation"><span class="header-section-number">1</span> Question 1: Parallel Sampling and Computation</h2>
+<section id="question-1-parallel-sampling-and-computation" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="question-1-parallel-sampling-and-computation"><span class="header-section-number">2.1</span> Question 1: Parallel Sampling and Computation</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -197,17 +259,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Mean  Variance
-result.1 0.8311095 0.5983242
-result.2 1.0011169 0.8739160
-result.3 0.8638296 1.1106385
-result.4 0.9997451 0.8131631
-result.5 0.7984325 0.4161565
-result.6 1.1212757 1.1549023</code></pre>
+result.1 0.8630848 0.7895733
+result.2 0.8810088 0.9384578
+result.3 1.0790460 0.9426926
+result.4 1.1062054 1.0085182
+result.5 1.0630430 1.3589275
+result.6 0.9286563 0.9830878</code></pre>
 </div>
 </div>
 </section>
-<section id="question-2-comparing-serial-and-parallel-bootstrapping" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="question-2-comparing-serial-and-parallel-bootstrapping"><span class="header-section-number">2</span> Question 2: Comparing Serial and Parallel Bootstrapping</h2>
+<section id="question-2-comparing-serial-and-parallel-bootstrapping" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="question-2-comparing-serial-and-parallel-bootstrapping"><span class="header-section-number">2.2</span> Question 2: Comparing Serial and Parallel Bootstrapping</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -258,26 +320,26 @@ result.6 1.1212757 1.1549023</code></pre>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Serial processing time:"</span>, serial_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Serial processing time: 0.442 0.011 0.511 0 0 </code></pre>
+<pre><code>Serial processing time: 0.434 0.009 0.445 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel processing time:"</span>, parallel_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel processing time: 2.209 0.413 2.822 0 0 </code></pre>
+<pre><code>Parallel processing time: 1.963 0.345 2.358 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Batch processing time:"</span>, batch_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Batch processing time: 0.009 0.001 0.186 0 0 </code></pre>
+<pre><code>Batch processing time: 0.008 0.001 0.183 0 0 </code></pre>
 </div>
 </div>
 </section>
-<section id="question-3-monte-carlo-bootstrapping" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="question-3-monte-carlo-bootstrapping"><span class="header-section-number">3</span> Question 3: Monte Carlo Bootstrapping</h2>
+<section id="question-3-monte-carlo-bootstrapping" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="question-3-monte-carlo-bootstrapping"><span class="header-section-number">2.3</span> Question 3: Monte Carlo Bootstrapping</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -315,12 +377,12 @@ result.6 1.1212757 1.1549023</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Execution Time:"</span>, sys_time1, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution Time: 37.506 0.32 37.998 0 0 </code></pre>
+<pre><code>Execution Time: 36.709 0.294 37.056 0 0 </code></pre>
 </div>
 </div>
 </section>
-<section id="question-4-finding-maximum-in-iterated-normal-samples" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="question-4-finding-maximum-in-iterated-normal-samples"><span class="header-section-number">4</span> Question 4: Finding Maximum in Iterated Normal Samples</h2>
+<section id="question-4-finding-maximum-in-iterated-normal-samples" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="question-4-finding-maximum-in-iterated-normal-samples"><span class="header-section-number">2.4</span> Question 4: Finding Maximum in Iterated Normal Samples</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -338,8 +400,8 @@ result.6 1.1212757 1.1549023</code></pre>
 </div>
 </div>
 </section>
-<section id="question-5-comparing-execution-time-of-different-parallel-methods" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="question-5-comparing-execution-time-of-different-parallel-methods"><span class="header-section-number">5</span> Question 5: Comparing Execution Time of Different Parallel Methods</h2>
+<section id="question-5-comparing-execution-time-of-different-parallel-methods" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="question-5-comparing-execution-time-of-different-parallel-methods"><span class="header-section-number">2.5</span> Question 5: Comparing Execution Time of Different Parallel Methods</h2>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -389,21 +451,21 @@ result.6 1.1212757 1.1549023</code></pre>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel foreach time:"</span>, par_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel foreach time: 0.004 0.001 0.034 0 0 </code></pre>
+<pre><code>Parallel foreach time: 0.004 0.001 0.031 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel parLapply time:"</span>, parLapply_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel parLapply time: 0.003 0 0.003 0 0 </code></pre>
+<pre><code>Parallel parLapply time: 0.002 0 0.003 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Replicate function time:"</span>, replicate_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Replicate function time: 0.002 0 0.002 0 0 </code></pre>
+<pre><code>Replicate function time: 0.001 0 0.002 0 0 </code></pre>
 </div>
 </div>
 
@@ -644,6 +706,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Parallel Computing Practical</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
