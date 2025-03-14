@@ -10,4 +10,4 @@ format:
 
 # Welcome to the Parallel Computing Practical
 
-# GITHUB : https://github.com/darmhiknaicker
+# GITHUB : https://github.com/darmhiknaicker OR top right corner

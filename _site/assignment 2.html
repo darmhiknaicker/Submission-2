@@ -259,12 +259,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              Mean  Variance
-result.1 0.8630848 0.7895733
-result.2 0.8810088 0.9384578
-result.3 1.0790460 0.9426926
-result.4 1.1062054 1.0085182
-result.5 1.0630430 1.3589275
-result.6 0.9286563 0.9830878</code></pre>
+result.1 1.0231862 0.9858143
+result.2 0.8903472 0.7870143
+result.3 1.0992855 0.9305418
+result.4 1.1519727 1.1776597
+result.5 0.9768902 1.1517905
+result.6 0.7505139 0.3512069</code></pre>
 </div>
 </div>
 </section>
@@ -320,14 +320,14 @@ result.6 0.9286563 0.9830878</code></pre>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Serial processing time:"</span>, serial_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Serial processing time: 0.434 0.009 0.445 0 0 </code></pre>
+<pre><code>Serial processing time: 0.436 0.01 0.447 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel processing time:"</span>, parallel_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel processing time: 1.963 0.345 2.358 0 0 </code></pre>
+<pre><code>Parallel processing time: 2 0.345 2.4 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -377,7 +377,7 @@ result.6 0.9286563 0.9830878</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Execution Time:"</span>, sys_time1, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution Time: 36.709 0.294 37.056 0 0 </code></pre>
+<pre><code>Execution Time: 36.748 0.282 37.084 0 0 </code></pre>
 </div>
 </div>
 </section>
@@ -451,7 +451,7 @@ result.6 0.9286563 0.9830878</code></pre>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Parallel foreach time:"</span>, par_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Parallel foreach time: 0.004 0.001 0.031 0 0 </code></pre>
+<pre><code>Parallel foreach time: 0.004 0 0.032 0 0 </code></pre>
 </div>
 <details>
 <summary>Code</summary>
@@ -465,7 +465,7 @@ result.6 0.9286563 0.9830878</code></pre>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Replicate function time:"</span>, replicate_time, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Replicate function time: 0.001 0 0.002 0 0 </code></pre>
+<pre><code>Replicate function time: 0.002 0 0.001 0 0 </code></pre>
 </div>
 </div>
 
