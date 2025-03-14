@@ -1,11 +1,186 @@
 ---
-title: "assignment 2"
+title: "Parallel and Sequential Processing in R"
+author: "Darmhik Naicker"
+date: "`r Sys.Date()`"
+output: html_document
 ---
 
-## Quarto
+```{r}
+# Load required packages
+library(iterators)
+library(foreach)
+library(parallel)
+library(doParallel)
+library(MASS)
+library(boot)
+```
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Question 1: Parallel Sampling and Computation
 
 ```{r}
-1 + 1
+# Register parallel backend
+cl <- makeCluster(detectCores() - 1)
+registerDoParallel(cl)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Use foreach to generate samples, calculate mean and variance, and row-bind results
+results <- foreach(i = 1:100, .combine = rbind) %dopar% {
+  sample_data <- rexp(100, rate = 1)
+  sample_mean <- mean(sample_data)
+  sample_var <- var(sample_data)
+  c(sample_mean, sample_var)
+}
+
+# Convert to a data frame and add column names
+results <- as.data.frame(results)
+colnames(results) <- c("Mean", "Variance")
+
+# Stop parallel cluster
+stopCluster(cl)
+
+# Display the first few rows of the results
+head(results)
+```
+
+## Question 2: Comparing Serial and Parallel Bootstrapping
+
+```{r}
+set.seed(123)
+B <- 10000
+
+# Serial execution
+serial_time <- system.time({
+  serial_results <- replicate(B, {
+    sample_data <- sample(galaxies, length(galaxies), replace = TRUE)
+    median(sample_data)
+  })
+})
+
+# Set up parallel backend
+cl <- makeCluster(detectCores() - 1)
+registerDoParallel(cl)
+
+# Parallel bootstrap
+parallel_time <- system.time({
+  parallel_results <- foreach(i = 1:B, .combine = c, .packages = 'MASS') %dopar% {
+    sample_data <- sample(galaxies, length(galaxies), replace = TRUE)
+    median(sample_data)
+  }
+})
+
+stopCluster(cl)
+
+# Batch processing setup
+cl <- makeCluster(detectCores() - 1)
+registerDoParallel(cl)
+
+set.seed(123)
+B_batch <- 1000
+num_batches <- B / B_batch
+
+batch_time <- system.time({
+  batch_results <- foreach(i = 1:num_batches, .combine = c, .packages = 'MASS') %dopar% {
+    replicate(B_batch, {
+      sample_data <- sample(galaxies, length(galaxies), replace = TRUE)
+      median(sample_data)
+    })
+  }
+})
+
+stopCluster(cl)
+
+cat("Serial processing time:", serial_time, "\n")
+cat("Parallel processing time:", parallel_time, "\n")
+cat("Batch processing time:", batch_time, "\n")
+```
+
+## Question 3: Monte Carlo Bootstrapping
+
+```{r}
+median_boot <- function(data, indices) {
+  return(median(data[indices]))
+}
+
+set.seed(123)
+B <- 1000
+MC_reps <- 1000
+n <- 50
+true_median <- log(2)
+coverage_count <- 0
+
+sys_time1 <- system.time({
+  for (i in 1:MC_reps) {
+    sample_data <- rexp(n, rate = 1)
+    boot_result <- boot(sample_data, statistic = median_boot, R = B)
+    ci <- boot.ci(boot_result, type = "perc")$percent[4:5]
+    if (!is.null(ci) && true_median >= ci[1] && true_median <= ci[2]) {
+      coverage_count <- coverage_count + 1
+    }
+  }
+})
+
+coverage_prob <- coverage_count / MC_reps
+
+cat("Estimated Coverage Probability:", coverage_prob, "\n")
+cat("Execution Time:", sys_time1, "\n")
+```
+
+## Question 4: Finding Maximum in Iterated Normal Samples
+
+```{r}
+# Create an iterator for 3 vectors, each containing 5 normal random numbers
+rand_iter <- irnorm(n = 5, mean = 0, sd = 1)
+
+max_values <- foreach(i = 1:3, .combine = c) %do% {
+  max(nextElem(rand_iter))
+}
+
+print(max_values)
+```
+
+## Question 5: Comparing Execution Time of Different Parallel Methods
+
+```{r}
+set.seed(1234)
+numCores <- detectCores() - 1  
+cl <- makeCluster(numCores)
+registerDoParallel(cl)
+
+find_max <- function() {
+  max(rnorm(5, mean = 0, sd = 1))
+}
+
+# Using foreach (sequential)
+seq_time <- system.time({
+  rand_iter <- irnorm(n = 5, mean = 0, sd = 1)
+  max_values_foreach_seq <- foreach(i = 1:3, .combine = c) %do% {
+    max(nextElem(rand_iter))
+  }
+})
+
+# Using foreach (parallel)
+par_time <- system.time({
+  max_values_foreach_par <- foreach(i = 1:3, .combine = c, .packages = "iterators") %dopar% {
+    max(rnorm(5, mean = 0, sd = 1))
+  }
+})
+
+# Using parLapply (parallel)
+parLapply_time <- system.time({
+  max_values_parLapply <- parLapply(cl, 1:3, function(x) max(rnorm(5, mean = 0, sd = 1)))
+})
+
+# Using replicate (sequential)
+replicate_time <- system.time({
+  max_values_replicate <- replicate(3, max(rnorm(5, mean = 0, sd = 1)))
+})
+
+stopCluster(cl)
+
+cat("Sequential foreach time:", seq_time, "\n")
+cat("Parallel foreach time:", par_time, "\n")
+cat("Parallel parLapply time:", parLapply_time, "\n")
+cat("Replicate function time:", replicate_time, "\n")
 ```

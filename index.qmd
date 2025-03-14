@@ -1,0 +1,12 @@
+---
+title: "Parallel Computing Practical"
+author: "Darmhik Naicker"
+date: "`r Sys.Date()`"
+format:
+  html:
+    theme: flatly
+    toc: false
+---
+
+# Welcome to the Parallel Computing Practical
+

@@ -1,5 +1,35 @@
 project:
-  title: "assignment 2"
+  type: website
+  output-dir: _site  
+  render:
+    - index.qmd
+    - assignment 2.qmd
 
-editor: visual
+book:
+  title: "Statistical Computing"
+  sidebar:
+    border: true
+    background: light
+    position: left
+    collapse-level: 2
+  navbar:
+    background: primary
+    search: true
+    right:
+      - icon: github
+        href: https://github.com/darmhiknaicker
 
+  chapters:
+    - index.qmd
+    - assignment 2.qmd
+
+format:
+  html:
+    theme: flatly  # Clean and professional look
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    code-fold: true  # Allows users to toggle code blocks
+    code-overflow: wrap  # Prevents horizontal scrolling
+    css: styles.css  # Custom styles if needed
